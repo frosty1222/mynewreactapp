@@ -1,0 +1,37 @@
+// this for getting id from url
+const url = window.location.pathname
+const strs = url.split('/');
+const id = strs.at(-1);
+// add cart function
+const newData = JSON.parse(getCookie("user"));
+        const data = {
+            customer_name:newData.name,
+            customer_phone:newData.phone,
+            customer_email:newData.email,
+            name:"",
+            image:"",
+            price:"",
+            quantity:1,
+            status:1
+        }
+        // console.log(data);
+        if(window.confirm('do you wanna add cart this item')){
+            axios.post('http://localhost:3001/cart/addcart/'+id,data).then(res=>{
+                Swal.fire({
+                    icon: 'success',
+                    text:res.data.message,
+                    showCancelButton: true,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#e3342f',
+                })
+                setCookie('cartLength',res.data.data.length)
+             })
+             .catch(err=>{
+                console.log(err)
+             });
+        }
+// explain about redux
++store: global state
++Action Increment: increment
++reducer:check Action
++dispatch

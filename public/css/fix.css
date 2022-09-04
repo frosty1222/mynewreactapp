@@ -1,0 +1,253 @@
+.grap-content{
+    width:70%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:100px;
+    margin-bottom: 100px;
+}
+/* clearFix */
+.clearFix{
+    clear:both;
+}
+.main-show-content{
+    width:70%;
+    margin-top:100px;
+}
+.btn-primary.linkElement{
+    margin-left:20px;
+}
+.grap-content-show{
+    width:100%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    display:flex;
+}
+.grap-content-show .left-image{
+    width:60%;
+    margin:10px;
+}
+.grap-content-show .left-image img{
+    width:100%;
+    margin:10px;
+}
+.grap-content-show .right-info{
+    width:40%;
+    margin:10px;
+}
+.right-info span{
+    display:block !important;
+    font-weight: 600;
+    font-size:25px;
+}
+.right-info span:first-child{
+   color:rgb(0, 13, 255);
+   display: inline-block;
+}
+.btn-primary.right-button{
+   float:right;
+}
+.btn-primary.float-right{
+    float:right;
+}
+#maxRows{
+    width:150px;
+}
+.form-group.right{
+    float:right;
+}
+/* card*/
+.main-card {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    width:100%;
+    display:grid;
+    margin-left:auto;
+    margin-right: auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows:300px;
+}
+.card{
+    width:18em;
+    margin:15px;
+    width:90%;
+    text-align:center;
+}
+.card-beverage{
+    margin-bottom: 100px;
+    width:100%;
+    display:grid;
+    margin-left:auto;
+    margin-right: auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows:300px 300px 300px 300px;
+}
+legend{
+    font-weight: bold;
+    color:orange;
+}
+/* show cater */
+.show-content{
+    width:100%;
+    display:flex;
+    height:auto;
+}
+.show-content .left-img{
+    width:50%;
+    margin-left: 20px;
+}
+.show-content .right-sub-img{
+    width:50%;
+    margin-left: 20px;
+}
+.right-sub-img ul{
+   display:grid;
+   grid-template-columns:100px 70px;
+   grid-template-rows: 50px 50px  50px 50px 50px; 
+}
+.right-sub-img ul li img{
+   height:50px;
+   width:100%;
+}
+ul li{
+    list-style:none;
+}
+/* cart css */
+.shopping-cart-icon{
+    position:absolute;
+    right: 0px;
+    top:30px;
+    width:50px;
+    height:50px;
+    text-align:center;
+    background:rgb(12, 186, 24);
+    z-index:1;
+    cursor: pointer;
+}
+.shopping-cart-icon .fa-shopping-cart{
+    font-size: 20px;
+    color:white;
+    margin-top: 10px;
+}
+.shopping-cart-icon:hover .fa-shopping-cart{
+    color:white;
+    font-size:15px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    z-index:1;
+    margin-top:15px;
+}
+.shopping-cart-icon:hover{
+    width:50px;
+    height:50px;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+}
+.cart-length{
+   position:absolute;
+   width:auto;
+   height:auto;
+   float:right;
+   right:0px;
+   z-index:9999;
+   background-color:#fff;
+}
+.cart-length .sub-cart-table{
+    position: absolute;
+    top:80px;
+    right:0px;
+    visibility:hidden;
+    opacity: 0;
+    z-index:2;
+}
+.cart-length:hover .sub-cart-table{
+    visibility:visible;
+    opacity: 1;
+}
+.cart-length:hover{
+    z-index:99999;
+    width:300px;
+    height:300px;
+}
+/* coupon-input */
+.form-control.coupon-input{
+    width:200px;
+}
+/* drink-container */
+.drink-container{
+    width:70%;
+    height:auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:50px;
+}
+/* shopping-cart-beverage */
+.cart-length-drink{
+    position:absolute;
+    width:auto;
+    height:auto;
+    float:right;
+    right:0px;
+    z-index:9999;
+    background:#fff;
+ }
+ .cart-down {
+    top: 5px;
+    position: absolute;
+    left: 5px;
+    font-weight: 700;
+}
+.shopping-cart-beverage {
+    background: greenyellow;
+    top: 86px;
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.sub-cart-table-drink{
+    position: absolute;
+    top:138px;
+    right:0px;
+    visibility:hidden;
+    opacity: 0;
+    z-index:9999;
+    cursor:pointer;
+}
+.cart-length-drink:hover .sub-cart-table-drink{
+    visibility:visible;
+    opacity: 1;
+    cursor:pointer;
+}
+.cart-length-drink:hover{
+    height:300px;
+    width:300px;
+}
+.cart-length-drink:hover .shopping-cart-beverage{
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+td img{
+  width:50px;
+  height:50px;
+}
+/* pagenotfoundimg */
+#pagenotfoundimg{
+    margin-left:auto;
+    margin-right:auto;
+}
