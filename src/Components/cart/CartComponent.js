@@ -7,10 +7,12 @@ import CountCart from '../helper/CountCart';
 import Swal from 'sweetalert2';
 import setCookie from '../cookies/setCookie';
 import $ from 'jquery';
+import { drinkPrice } from '../../app/features/counter/counterSlice';
 const URL = 'http://localhost:3001/cart/';
 const proDuctURLImage =`http://localhost:3001/`;
 const caterUrlImage = `http://localhost:3001/caterImage`;
 const paymentURL = `http://localhost:3001/payment/`;
+var total_drink_Price;
 class CartComponent extends Component {
    constructor(props){
     super(props);
@@ -26,7 +28,7 @@ class CartComponent extends Component {
         caterCart:"",
         drinkItem:[],
         warning:"empty",
-        drinkPrice:""
+        drink_price:""
     }
     this.Delete = this.Delete.bind(this);
     this.DeleteCaterMeal = this.DeleteCaterMeal.bind(this); 
@@ -35,6 +37,7 @@ class CartComponent extends Component {
     this.deleteBeverageItem = this.deleteBeverageItem.bind(this);
     this.updateCartStatus = this.updateCartStatus.bind(this);
     this.MoveToHistory = this.MoveToHistory.bind(this);
+    this.serveAllFood = this.serveAllFood.bind(this);
    }
    getCartItem(){
     const getuserfromcookie = getCookie("user");
@@ -106,7 +109,7 @@ class CartComponent extends Component {
       })
    }
    getMealCart(){
-    var totalPrice =0;
+    var drink_price =0;
     const getuserfromcookie = getCookie("user");
     if(getuserfromcookie){
       const user = JSON.parse(getuserfromcookie);
@@ -117,6 +120,12 @@ class CartComponent extends Component {
          axios.post(URL+'getmealcart',data).then(res=>{
             this.setState({caterCart:res.data.data})
             setCookie('cartCater',res.data.data.length)
+            res.data.data.map((c)=>{
+                for(let i =0;i<c.drink.length;i++){
+                    drink_price  +=parseInt(c.drink[i].beverage_quantity) * parseInt(c.drink[i].beverage_price);
+                    total_drink_Price = drink_price;
+                }
+            })
          })
          .catch(err=>{
             console.log(err)
@@ -174,7 +183,6 @@ class CartComponent extends Component {
    }
    MoveToHistory(id,name,price,image,quantity,paytime){
     const user = JSON.parse(getCookie("user"));
-       
        const data = {
             id:id,
             name:name,
@@ -185,7 +193,7 @@ class CartComponent extends Component {
             customer_name:user.name,
             customer_phone:user.phone,
             customer_email:user.email,
-            drink_price:this.state.drinkPrice
+            drink_price:total_drink_Price
        }
        axios.post(paymentURL+'movetohistory',data).then(
         res=>{
@@ -203,6 +211,25 @@ class CartComponent extends Component {
        .catch(err=>{
         console.log(err)
        });
+   }
+   serveAllFood(){
+     const data ={
+        status:2
+     }
+     axios.post(URL+'updateall',data).then(res=>{
+        Swal.fire({
+            icon: 'success',
+            text:res.data.message,
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            confirmButtonColor: 'green',
+         })
+         this.getMealCart();
+         this.getCartItem();
+     })
+     .catch(err=>{
+        console.log(err)
+     })
    }
    componentDidMount(){
         this.getCartItem();
@@ -379,7 +406,7 @@ class CartComponent extends Component {
                                     }
                                 </tbody>
                              </table>
-                             <Link className="btn btn-primary" to="/payment">Served All</Link>
+                             <button className="btn btn-primary" onClick={()=>this.serveAllFood()}>Served All</button>
                         </div>
                         <nav aria-label="Page navigation example text-center">
                         <ul class="pagination ">

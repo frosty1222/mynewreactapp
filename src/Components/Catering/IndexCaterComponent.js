@@ -18,6 +18,7 @@ class IndexCaterComponent extends Component {
      }
      this.addCart = this.addCart.bind(this);
      this.addDrink = this.addDrink.bind(this);
+     this.reChoose = this.reChoose.bind(this);
   }
   getBeData(){
     axios.get('http://localhost:3001/beverage/beindex').then(
@@ -88,6 +89,16 @@ addCart(id,name,image,price){
          });
     }
 }
+reChoose(){
+    Swal.fire({
+        icon: 'success',
+        text:"you have empty your cart",
+        showCancelButton: true,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#e3342f',
+    })
+    return drinks =[];
+}
   componentDidMount(){
     this.getBeData();
     this.getCaterData();
@@ -129,7 +140,7 @@ addCart(id,name,image,price){
                 </div>
                    {/* beverages */}
                    <legend className="text-center">Beverages Menu</legend>
-                   <button className="btn btn-primary float-right">Re-choose all</button>
+                   <button className="btn btn-primary float-right" onClick={()=>this.reChoose()}>Re-choose all</button>
                    <div className="card-beverage">
                         {/* section 2 */}
                     {

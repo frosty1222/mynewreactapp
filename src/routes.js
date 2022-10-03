@@ -16,6 +16,7 @@ import BEditComponent from './Components/beverage/BEditComponent';
 // login and register routes
 import LoginComponent from './Components/user/LoginComponent';
 import RegisterComponent from './Components/user/RegisterComponent';
+import AddNewAvatar from './Components/user/AddNewAvatar';
 //page not found routes
 import PageNotFound from './Components/PageNotFound';
 import ProtectedRoutes from './ProtectedRoutes';
@@ -24,9 +25,10 @@ import ProtectedRoutesAdmin from './ProtectedRoutesAdmin';
 import TestComponent from './Components/TestComponent';
 // cartComponent
 import CartComponent from './Components/cart/CartComponent';
-import PayMentComponent from './Components/cart/PayMentComponent';
+import HistoryComponent from './Components/cart/HistoryComponent';
 // admin routes
 import CounponComponent from './Components/admin/CouponComponent';
+
 export default function RouteClass(){
        return (
          <>
@@ -34,11 +36,13 @@ export default function RouteClass(){
                 <Route element={<ProtectedRoutes/>}>
                    <Route index element={ <IndexComponent/>} />
                    <Route path="/cart" element={<CartComponent/>}/>
-                   <Route path="/payment/:id" element={<PayMentComponent/>}/>
+                   <Route path="/history" element={<HistoryComponent/>}/>
+                   <Route path="/addnewavatar" element={<AddNewAvatar/>} />
                 </Route>
                 <Route element={<ProtectedRoutesAdmin/>}>
                      {/* admin routes */}
                    <Route path="/makecoupon" element={<CounponComponent/>} />
+
                 </Route>
                 {/* <ProtectedRoute index element={ <IndexComponent/>}/> */}
                 <Route path="/addnew" element={ <AddComponent/>} />

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import {useState} from 'react';
+import { useDispatch } from 'react-redux';
 const URL = 'http://localhost:3001/cart/';
 const CountCart =()=>{
     const [caterTotalPrice,setCaterTotalPrice] = useState("");
@@ -13,6 +14,7 @@ const CountCart =()=>{
     const [couponResult,setCouponResult] = useState("");
     const [couponPercentage,setCouponPercentage] = useState("");
     const [message,setMessage] = useState("");
+    const dispatch = useDispatch();
     function onChangeCouponCode(e){
          setCode(e.target.value);
          console.log(code)
@@ -28,6 +30,7 @@ const CountCart =()=>{
              axios.post(URL+'getcartitem',data).then(res=>{
                 setCookie('cartLength',res.data.data.length)
                setDishTotalPrice(res.data.data.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2));
+               
              })
              .catch(err=>{
                 console.log(err)

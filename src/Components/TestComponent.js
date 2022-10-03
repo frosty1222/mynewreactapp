@@ -5,6 +5,7 @@ import Counter from '../app/features/counter/Counter';
 import Auth from '../Auth';
 import setHeader from '../setHeader';
 import getCookie from './cookies/getCookie';
+import setCookie from './cookies/setCookie';
 const URL = 'http://localhost:3001/user/';
 class TestComponent extends Component {
    constructor(props){
@@ -18,16 +19,15 @@ class TestComponent extends Component {
    }
    checkTokenLife(){
       axios.post(URL+'checktokenlife').then(res=>{
-         this.setState({tokenDecoded:res.data.tokendecoded})
-         this.setState({newData:JSON.parse(this.state.tokenDecoded)})
-         console.log(JSON.parse(this.state.tokenDecoded))
-      }).catch(err=>{
-        console.log(err);
-      })
+          this.setState({tokenDecoded:res.data.tokendecoded})
+          this.setState({newData:JSON.parse(this.state.tokenDecoded)})
+          console.log(JSON.parse(this.state.tokenDecoded))
+       }).catch(err=>{
+         console.log(err);
+       })
    }
    componentDidMount(){
-    this.checkTokenLife();
-   console.log(this.state.newData);
+    // this.checkTokenLife();
     if(getCookie('accessToken') !==""){
         setHeader(getCookie('accessToken'));
        }
@@ -46,7 +46,8 @@ class TestComponent extends Component {
                     <button className="btn btn-primary" onClick={()=>this.checkTokenLife()}>test</button>
                     <br/>
                     <h4>{this.state.data}</h4>
-                    <h4>{this.state.newData.message}</h4>
+                    <h4>{this.state.newData.name}</h4>
+                    <br/>
                     {/* <h4>{this.state.tokenDecoded}</h4>.slice(39,-41) */}
                     <h4>Counter Section</h4>
                     <Counter />

@@ -172,7 +172,12 @@ class IndexComponent extends Component {
                    
                         <Link to="/addnew" className="btn btn-primary">Add New</Link>
                         <Link to="/indexcater" className="btn btn-warning">Return To Cater Booking</Link>
-                        <button className="btn btn-primary" onClick={()=>this.Logout()}>Logout</button>
+                        <button className="btn btn-danger" onClick={()=>this.Logout()}>Logout</button>
+                        {
+                            getCookie('role') === 'admin'?(
+                                <Link className="btn btn-primary" to="/history">Go to see History</Link>
+                            ):(<></>)
+                        }
                         {this.state.Redirect === "false"?(
                               <Navigate to="/login" />
                             ):(<></>)
@@ -213,11 +218,15 @@ class IndexComponent extends Component {
                                                 <td>${d.sale_price}</td>
                                                 <td>{d.quantity}</td>
                                                 <td>
-                                                    
-                                                    <button onClick={()=>this.Delete(d._id)} type="button" className="btn btn-danger">Delete</button>
-                                                    
-                                                    <Link type="button" className="btn btn-success" to={`/editItem/`+d._id}>Edit</Link>
-                                                    <Link type="button" className="btn btn-secondary" to={`/showItem/`+d._id}>Show</Link>
+                                                    {
+                                                        getCookie('role') ==='admin' &&  getCookie('role') !=="" ?(
+                                                            <>
+                                                              <button onClick={()=>this.Delete(d._id)} type="button" className="btn btn-danger">Delete</button>
+                                                              <Link type="button" className="btn btn-success" to={`/editItem/`+d._id}>Edit</Link>
+                                                              <Link type="button" className="btn btn-secondary" to={`/showItem/`+d._id}>Show</Link>
+                                                            </>
+                                                        ):(<></>)
+                                                    }
                                                     <Link type="button" className="btn btn-primary" to="#" onClick={()=>this.getIdValue(d._id)}>Add Cart</Link>
                                                 </td>
                                            
